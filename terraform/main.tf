@@ -4,10 +4,10 @@ resource "cloudflare_workers_kv_namespace" "student_tasks" {
 }
 
 resource "cloudflare_workers_script" "task_manager" {
-  account_id  = var.account_id
-  name        = var.worker_name
-  content     = file("${path.module}/../application/worker.js")
-  module      = true
+  account_id = var.account_id
+  name       = var.worker_name
+  content    = file("${path.module}/../application/worker.js")
+  module     = true
 
   kv_namespace_binding {
     name         = "TASKS_KV"
