@@ -23,19 +23,10 @@ jobs:
           terraform_version: 1.7.5
 
       - name: Terraform Init
-        run: terraform init
-        env:
-          TF_VAR_cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          TF_VAR_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: terraform init -backend=false
 
       - name: Terraform Format
         run: terraform fmt -check
 
       - name: Terraform Validate
         run: terraform validate
-
-      - name: Terraform Plan
-        run: terraform plan -no-color
-        env:
-          TF_VAR_cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          TF_VAR_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
